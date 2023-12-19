@@ -25,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: rustup target add wasm32-unknown-unknown
+      - run: rustup target add wasm32-wasi-preview1-threads
       - uses: wasmerio/setup-wasmer@v3
       - uses: cargo-bins/cargo-binstall@main
       - run: cargo binstall cargo-wasmer -y
