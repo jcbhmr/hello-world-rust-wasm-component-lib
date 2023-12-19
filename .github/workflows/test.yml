@@ -26,8 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: wasmerio/setup-wasmer@v3
-      - run: cargo install cargo-wasmer
-      - run: cargo install wasmer-pack-cli
+      - uses: cargo-bins/cargo-binstall@main
+      - run: cargo binstall cargo-wasmer -y
+      - run: cargo binstall wasmer-pack-cli -y
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
