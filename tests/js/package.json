@@ -4,10 +4,11 @@
     "test": "node --test"
   },
   "dependencies": {
-    "@jcbhmr/hello-world-wasm-lib": "https://cdn.wasmer.io/bindings/generator-0.7.1/npm/jcbhmr/hello-world-wasm-lib/hello-world-wasm-lib-0.2.0.tar.gz",
+    "@jcbhmr/hello-world-wasm-lib": "file:./package",
     "auto-bind": "^5.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.5"
-  }
+  },
+  "workspaces": ["./package"]
 }

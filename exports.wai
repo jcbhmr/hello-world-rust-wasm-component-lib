@@ -1,0 +1,17 @@
+/// Add two numbers
+add: func(a: u32, b: u32) -> u32
+
+/// Greet a person by name.
+greet: func(name: string) -> string
+
+/// Say hello to multiple people.
+greet-many: func(people: list<string>) -> string
+
+/// A point coordinate structure with { x, y }
+record point {
+    x: float32,
+    y: float32
+}
+
+/// Calculate distance between two points
+distance-between: func(p1: point, p2: point) -> float32
