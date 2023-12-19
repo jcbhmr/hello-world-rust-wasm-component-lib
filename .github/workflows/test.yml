@@ -34,6 +34,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      # Even '--dry-run' still needs token. 🤷‍♀️
       - run: ./test.sh
         env:
-          WASMER_TOKEN: "notatoken"
+          WASMER_TOKEN: notatoken
