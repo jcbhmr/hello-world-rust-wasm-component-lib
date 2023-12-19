@@ -27,7 +27,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: wasmerio/setup-wasmer@v3
       - uses: cargo-bins/cargo-binstall@main
+      # cargo-wasmer uses 'gh auth token' somehow.
       - run: cargo binstall cargo-wasmer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: cargo binstall wasmer-pack
       - uses: actions/setup-node@v4
         with:
