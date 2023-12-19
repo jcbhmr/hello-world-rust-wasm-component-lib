@@ -1,6 +1,10 @@
 wai_bindgen_rust::export!("exports.wai");
+
 pub struct Exports;
 use crate::exports::*;
+use std::sync::Mutex;
+use wai_bindgen_rust::Handle;
+
 impl exports::Exports for Exports {
     fn add(a: u32, b: u32) -> u32 {
         a + b
@@ -48,5 +52,25 @@ impl exports::Exports for Exports {
             result += Exports::distance_between(p1, p2);
         }
         result
+    }
+}
+
+pub struct Calculator(Mutex<f32>);
+
+impl exports::Calculator for Calculator {
+    fn new(initial_value: f32) -> Handle<Calculator> {
+        Handle::new(Calculator(Mutex::new(initial_value)))
+    }
+
+    fn current_value(&self) -> f32 {
+        *self.0.lock().unwrap()
+    }
+
+    fn add(&self, value: f32) {
+        *self.0.lock().unwrap() += value;
+    }
+
+    fn multiply(&self, value: f32) {
+        *self.0.lock().unwrap() *= value;
     }
 }
