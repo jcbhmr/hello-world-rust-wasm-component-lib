@@ -50,3 +50,4 @@ resource calculator {
 }
 
 fib-n-plus-one: func(n: u32) -> u32
+cowsay: func(message: string)

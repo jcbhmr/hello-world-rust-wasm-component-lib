@@ -1,4 +1,5 @@
 wai_bindgen_rust::import!("fib.wai");
+wai_bindgen_rust::import!("io.wai");
 wai_bindgen_rust::export!("hello-world-wasm-lib.wai");
 
 use crate::hello_world_wasm_lib::*;
@@ -57,6 +58,31 @@ impl hello_world_wasm_lib::HelloWorldWasmLib for HelloWorldWasmLib {
 
     fn fib_n_plus_one(n: u32) -> u32 {
         return fib::fib(n + 1);
+    }
+
+    fn cowsay(message: String) {
+        let cow = r#"
+      ^__^
+     (oo)\_______
+     (__)\       )\/\
+         ||----w |
+         ||     ||
+    "#;
+
+        // Create the speech bubble
+        let speech_bubble = format!(
+            "
+      {}
+    < {} >
+      {}
+    ",
+            "-".repeat(message.len() + 2),
+            message,
+            "-".repeat(message.len() + 2)
+        );
+
+        // Combine the cow and speech bubble
+        io::print(&format!("{}{}", cow, speech_bubble));
     }
 }
 

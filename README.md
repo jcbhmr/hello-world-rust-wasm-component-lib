@@ -35,6 +35,7 @@ print(calc.current_value())
 🚀 Quickstart template for Wasmer-based WASM libraries \
 🦀 Written in Rust \
 📖 Follows the [Wasmer Pack tutorial series] \
+📥 Imports some host functions \
 🟨 Can be used with JavaScript \
 🐍 Can be used with Python \
 👩‍⚖️ [0BSD licensed] template
@@ -73,13 +74,18 @@ wasmer add jcbhmr/hello-world-wasm-lib --pip
 ![Bun](https://img.shields.io/static/v1?style=for-the-badge&message=Bun&color=000000&logo=Bun&logoColor=FFFFFF&label=)
 ![Python](https://img.shields.io/static/v1?style=for-the-badge&message=Python&color=3776AB&logo=Python&logoColor=FFFFFF&label=)
 
+<!-- prettier-ignore -->
+Imports (in order): [`fib`](fib.wai), [`io`](io.wai) \
+Exports: [`hello-world-wasm-lib`](hello-world-wasm-lib.wai)
+
 Here's an example of how you would import and use this package using Node.js:
 
 ```js
 import { bindings } from "@jcbhmr/hello-world-wasm-lib";
 import { Calculator } from "@jcbhmr/hello-world-wasm-lib/src/bindings/hello_world_wasm_lib/hello_world_wasm_lib.js";
+import * as io from "./io.js";
 import * as fib from "./fib.js";
-const hello_world_wasm_lib = await bindings.hello_world_wasm_lib(fib);
+const hello_world_wasm_lib = await bindings.hello_world_wasm_lib(fib, io);
 
 console.log(hello_world_wasm_lib.add(1, 2));
 //=> 3
@@ -102,7 +108,8 @@ To use this package with Python this is what you would do:
 from hello_world_wasm_lib import bindings
 from hello_world_wasm_lib.bindings.hello_world_wasm_lib import Calculator
 import .fib
-hello_world_wasm_lib = bindings.hello_world_wasm_lib(fib)
+import .io
+hello_world_wasm_lib = bindings.hello_world_wasm_lib(fib, io)
 
 print(hello_world_wasm_lib.add(1, 2))
 #=> 3
@@ -114,14 +121,6 @@ calc.add(5)
 print(calc.current_value())
 #=> 20
 ```
-
-### Dependencies
-
-Since this is WASM, you have to inject your the dependencies yourself. 🤷‍♀️ The
-only dependency that this project has is on a `fib` module which should have a
-`fib()` function that takes a single `u32` parameter and returns a `u32`.
-
-[📚 See the complete `fib.wai`](https://github.com/jcbhmr/hello-world-wasm-lib/blob/main/fib.wai)
 
 ## Development
 

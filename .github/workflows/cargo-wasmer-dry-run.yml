@@ -30,6 +30,17 @@ jobs:
       - run: cargo binstall cargo-wasmer -y
       - run: cargo binstall wasmer-pack-cli -y
       # Even '--dry-run' still needs token. 🤷‍♀️
-      - run: cargo wasmer --dry-run --debug
+      - run: cargo wasmer --dry-run --debug --out-dir=./out
         env:
           WASMER_TOKEN: notatoken
+      - run: mv ./out/wasmer.toml ./out/wapm.toml
+      - run: wasmer-pack js ./out --out-dir=./out/js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: js
+          path: out/js
+      - run: wasmer-pack py ./out --out-dir=./out/py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: py
+          path: out/py
