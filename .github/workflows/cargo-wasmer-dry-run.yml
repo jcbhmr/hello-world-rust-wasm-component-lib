@@ -32,6 +32,6 @@ jobs:
       - run: cargo binstall cargo-wasmer -y
       - run: cargo binstall wasmer-pack-cli -y
       # Even '--dry-run' still needs token. 🤷‍♀️
-      - run: cargo-wasmer --dry-run --debug
+      - run: cargo wasmer --dry-run --debug
         env:
           WASMER_TOKEN: notatoken
