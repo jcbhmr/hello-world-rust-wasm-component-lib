@@ -6,22 +6,20 @@ on:
       - .gitignore
       - LICENSE
       - README.md
-      - tests/js/.gitignore
       - .github/**
-      - "!.github/workflows/test.yml"
+      - "!.github/workflows/cargo-wasmer-dry-run.yml"
   pull_request:
     paths-ignore:
       - .gitignore
       - LICENSE
       - README.md
-      - tests/js/.gitignore
       - .github/**
-      - "!.github/workflows/test.yml"
+      - "!.github/workflows/cargo-wasmer-dry-run.yml"
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  test:
+  cargo-wasmer-dry-run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
