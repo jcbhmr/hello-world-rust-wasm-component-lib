@@ -1,4 +1,4 @@
-name: ./test.sh
+name: cargo wasmer --dry-run
 on:
   push:
     branches: "main"
@@ -31,10 +31,7 @@ jobs:
       - uses: cargo-bins/cargo-binstall@main
       - run: cargo binstall cargo-wasmer -y
       - run: cargo binstall wasmer-pack-cli -y
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
       # Even '--dry-run' still needs token. 🤷‍♀️
-      - run: ./test.sh
+      - run: cargo-wasmer --dry-run --debug
         env:
           WASMER_TOKEN: notatoken

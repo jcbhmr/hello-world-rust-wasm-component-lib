@@ -48,3 +48,5 @@ resource calculator {
     add: func(value: float32)
     multiply: func(value: float32)
 }
+
+fib-n-plus-one: func(n: u32) -> u32

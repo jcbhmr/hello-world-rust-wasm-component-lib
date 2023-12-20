@@ -1,11 +1,12 @@
-wai_bindgen_rust::export!("exports.wai");
+wai_bindgen_rust::import!("fib.wai");
+wai_bindgen_rust::export!("hello-world-wasm-lib.wai");
 
-pub struct Exports;
-use crate::exports::*;
+use crate::hello_world_wasm_lib::*;
 use std::sync::Mutex;
 use wai_bindgen_rust::Handle;
 
-impl exports::Exports for Exports {
+pub struct HelloWorldWasmLib;
+impl hello_world_wasm_lib::HelloWorldWasmLib for HelloWorldWasmLib {
     fn add(a: u32, b: u32) -> u32 {
         a + b
     }
@@ -17,7 +18,7 @@ impl exports::Exports for Exports {
     fn greet_many(people: Vec<String>) -> String {
         match people.as_slice() {
             [] => "Hello!".to_string(),
-            [person] => Exports::greet(person.into()),
+            [person] => HelloWorldWasmLib::greet(person.into()),
             [person_1, person_2] => format!("Hello {person_1} and {person_2}!"),
             [people @ .., last] => {
                 let people = people.join(", ");
@@ -49,15 +50,18 @@ impl exports::Exports for Exports {
         for i in 1..l.points.len() {
             let p1 = l.points[i - 1];
             let p2 = l.points[i];
-            result += Exports::distance_between(p1, p2);
+            result += HelloWorldWasmLib::distance_between(p1, p2);
         }
         result
+    }
+
+    fn fib_n_plus_one(n: u32) -> u32 {
+        return fib::fib(n + 1);
     }
 }
 
 pub struct Calculator(Mutex<f32>);
-
-impl exports::Calculator for Calculator {
+impl hello_world_wasm_lib::Calculator for Calculator {
     fn new(initial_value: f32) -> Handle<Calculator> {
         Handle::new(Calculator(Mutex::new(initial_value)))
     }
