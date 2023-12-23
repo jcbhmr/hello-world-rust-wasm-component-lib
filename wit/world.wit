@@ -1,0 +1,22 @@
+package example:hello-world-rust-wasm-component@1.0.0;
+
+interface hello-world-rust-wasm-component-interface {
+  record report {
+    bouncy-castles: u32,
+    fun-percent: float64,
+    cat-count: u32,
+    unicorn-names: list<string>,
+  }
+}
+
+world hello-world-rust-wasm-component {
+  import print: func(msg: string);
+
+  export run: func();
+
+  export greet: func(name: string) -> string;
+  export greet-many: func(names: list<string>) -> string;
+
+  use hello-world-rust-wasm-component-interface.{report};
+  export get-report: func() -> report;
+}

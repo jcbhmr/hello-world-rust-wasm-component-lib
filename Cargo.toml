@@ -1,26 +1,18 @@
 [package]
-name = "hello-world-wasm-lib"
-description = "🟪 A Rust library compiled to WASM and distributed with Wasmer"
-version = "1.1.1"
+name = "hello-world-rust-wasm-component"
+description = "TODO"
+version = "2.0.0"
 edition = "2021"
-documentation = "https://github.com/jcbhmr/hello-world-wasm-lib#readme"
-homepage = "https://github.com/jcbhmr/hello-world-wasm-lib#readme"
-repository = "https://github.com/jcbhmr/hello-world-wasm-lib.git"
+documentation = "https://github.com/jcbhmr/hello-world-rust-wasm-component#readme"
+homepage = "https://github.com/jcbhmr/hello-world-rust-wasm-component#readme"
+repository = "https://github.com/jcbhmr/hello-world-rust-wasm-component.git"
 license = "0BSD"
 publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-wai-bindgen-rust = "0.2.3"
+wit-bindgen = { git = "https://github.com/bytecodealliance/wit-bindgen", version = "0.16.0" }
 
 [lib]
-crate-type = ["cdylib", "rlib"]
-
-[package.metadata.wasmer]
-namespace = "jcbhmr"
-abi = "none"
-bindings = { wai-version = "0.2.3", imports = ["fib.wai", "io.wai"], exports = "hello-world-wasm-lib.wai" }
-
-[build]
-target = "wasm32-unknown-unknown"
+crate-type = ["cdylib"]

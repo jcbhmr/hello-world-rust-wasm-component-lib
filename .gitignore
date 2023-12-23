@@ -1,4 +1,4 @@
-# Wasmer package output for local testing
+# WASM component artifacts
 out
 
 #region https://github.com/github/gitignore/blob/main/Rust.gitignore
