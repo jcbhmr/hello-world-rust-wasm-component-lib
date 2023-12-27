@@ -1,1 +1,19 @@
 name: Draft release
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+  draft-release:
+    needs: build
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: out
+      - run: gh release create '?' --draft out/*
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}

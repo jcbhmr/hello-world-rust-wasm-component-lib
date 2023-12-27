@@ -84,6 +84,8 @@ For language-specific binding documentation, check out
 
 ℹ You'll need [`wasm-tools`] installed which you can get via `cargo install wasm-tools`.
 
+The `wasi_snapshot_preview1.reactor.wasm` is the adapter module to shim the component API over top of the existing WASI API. Keep it updated from [bytecodealliance/wasmtime releases]. Since this is a library we want the "reactor" version.
+
 <!-- prettier-ignore -->
 ✅ JavaScript: [jcbhmr/hello-world-rust-wasm-component/hello-world-rust-wasm-component.js](https://github.com/jcbhmr/hello-world-rust-wasm-component/tree/main/hello-world-rust-wasm-component.js) \
 ❌ Python \
@@ -96,4 +98,5 @@ For language-specific binding documentation, check out
 [bytecodealliance/wasm-tools]: https://github.com/bytecodealliance/wasm-tools
 [wasm component]: https://github.com/WebAssembly/component-model
 [`wasm-tools`]: https://github.com/bytecodealliance/wasm-tools
+[bytecodealliance/wasmtime/releases]: https://github.com/bytecodealliance/wasmtime/releases
 <!-- prettier-ignore-end -->
