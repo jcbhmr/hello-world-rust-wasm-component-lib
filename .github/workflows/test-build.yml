@@ -3,7 +3,7 @@ on:
   push:
     branches: "main"
     paths-ignore:
-      - hello-world-rust-wasm-component.js/**
+      - hello-world-rust-wasm-lib-component.js/**
       - .gitignore
       - README.md
       - LICENSE
@@ -12,7 +12,7 @@ on:
       - "!.github/workflows/test-build.yml"
   pull_request:
     paths-ignore:
-      - hello-world-rust-wasm-component.js/**
+      - hello-world-rust-wasm-lib-component.js/**
       - .gitignore
       - README.md
       - LICENSE

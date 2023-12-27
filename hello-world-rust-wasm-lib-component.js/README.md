@@ -1,6 +1,6 @@
 # "Hello world!" Rust WebAssembly library component for JavaScript
 
-🔗 JavaScript bindings for [jcbhmr/hello-world-rust-wasm-component]
+🔗 JavaScript bindings for [jcbhmr/hello-world-rust-wasm-lib-component]
 
 <table align=center><td>
 
@@ -35,16 +35,16 @@ console.log(greetMany(["Alan Turing", "Ada Lovelace"]));
 ![jsDelivr](https://img.shields.io/static/v1?style=for-the-badge&message=jsDelivr&color=E84D3D&logo=jsDelivr&logoColor=FFFFFF&label=)
 
 ```sh
-npm install hello-world-rust-wasm-component
+npm install hello-world-rust-wasm-lib-component
 ```
 
 ```js
-import {} from "npm:hello-world-rust-wasm-component";
+import {} from "npm:hello-world-rust-wasm-lib-component";
 ```
 
 ```html
 <script type="module">
-  import {} from "https://esm.run/hello-world-rust-wasm-component";
+  import {} from "https://esm.run/hello-world-rust-wasm-lib-component";
 </script>
 ```
 
@@ -61,7 +61,7 @@ import {
   greetMany,
   getReport,
   computeArea,
-} from "hello-world-rust-wasm-component";
+} from "hello-world-rust-wasm-lib-component";
 
 run();
 //=> Hello Alan Turing!
@@ -83,5 +83,5 @@ console.log(greetMany(["Alan Turing", "Ada Lovelace"]));
 ```
 
 <!-- prettier-ignore-start -->
-[jcbhmr/hello-world-rust-wasm-component]: https://github.com/jcbhmr/hello-world-rust-wasm-component
+[jcbhmr/hello-world-rust-wasm-lib-component]: https://github.com/jcbhmr/hello-world-rust-wasm-lib-component
 <!-- prettier-ignore-end -->

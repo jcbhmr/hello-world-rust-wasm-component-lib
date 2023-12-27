@@ -14,10 +14,10 @@ jobs:
           node-version: "20"
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-        working-directory: hello-world-rust-wasm-component.js
+        working-directory: hello-world-rust-wasm-lib-component.js
       - run: npm run build
-        working-directory: hello-world-rust-wasm-component.js
+        working-directory: hello-world-rust-wasm-lib-component.js
       - run: npm publish
-        working-directory: hello-world-rust-wasm-component.js
+        working-directory: hello-world-rust-wasm-lib-component.js
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

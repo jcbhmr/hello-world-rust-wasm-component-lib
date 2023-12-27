@@ -4,10 +4,10 @@ mkdir -p out
 
 if [[ $1 == '--release' ]]; then
   release_flag="--release"
-  artifact=target/wasm32-wasi/release/hello_world_rust_wasm_component.wasm
+  artifact=target/wasm32-wasi/release/hello_world_rust_wasm_lib_component.wasm
 else
   release_flag=""
-  artifact=target/wasm32-wasi/debug/hello_world_rust_wasm_component.wasm
+  artifact=target/wasm32-wasi/debug/hello_world_rust_wasm_lib_component.wasm
 fi
 
 cargo build --target wasm32-wasi $release_flag

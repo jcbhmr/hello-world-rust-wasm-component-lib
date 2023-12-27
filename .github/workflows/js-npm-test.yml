@@ -3,12 +3,12 @@ on:
   push:
     branches: "main"
     paths:
-      - hello-world-rust-wasm-component.js/**
+      - hello-world-rust-wasm-lib-component.js/**
       - .github/workflows/js-npm-test.yml
       - .github/workflows/build.yml
   pull_request:
     paths:
-      - hello-world-rust-wasm-component.js/**
+      - hello-world-rust-wasm-lib-component.js/**
       - .github/workflows/js-npm-test.yml
       - .github/workflows/build.yml
 concurrency:
@@ -30,6 +30,6 @@ jobs:
           name: out
           path: out
       - run: npm ci
-        working-directory: hello-world-rust-wasm-component.js
+        working-directory: hello-world-rust-wasm-lib-component.js
       - run: npm test
-        working-directory: hello-world-rust-wasm-component.js
+        working-directory: hello-world-rust-wasm-lib-component.js
