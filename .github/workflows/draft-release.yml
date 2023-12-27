@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
 jobs:
   draft-release:
-    needs: build
     permissions:
       contents: write
     runs-on: ubuntu-latest
