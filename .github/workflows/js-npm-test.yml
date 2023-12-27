@@ -13,6 +13,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  build:
+    uses: ./.github/workflows/build.yml
   npm-test:
     runs-on: ubuntu-latest
     steps:
@@ -20,6 +22,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - uses: actions/download-artifact@v4
+        with:
+          name: out
+          path: out
       - run: npm ci
         working-directory: hello-world-rust-wasm-component.js
       - run: npm test
