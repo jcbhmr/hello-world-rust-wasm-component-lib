@@ -1,5 +1,5 @@
 [package]
-name = "hello-world-rust-wasm-lib-component"
+name = "hello-world-rust-wasm-component-lib"
 version = "1.0.0"
 edition = "2021"
 publish = false

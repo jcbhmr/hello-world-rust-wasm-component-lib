@@ -1,6 +1,6 @@
-package example:hello-world-rust-wasm-lib-component@1.0.0;
+package example:hello-world-rust-wasm-component-lib@1.0.0;
 
-interface hello-world-rust-wasm-lib-component-interface {
+interface hello-world-rust-wasm-component-lib-interface {
   record report {
     bouncy-castles: u32,
     fun-percent: float64,
@@ -19,7 +19,7 @@ interface hello-world-rust-wasm-lib-component-interface {
   }
 }
 
-world hello-world-rust-wasm-lib-component {
+world hello-world-rust-wasm-component-lib {
   import print: func(msg: string);
 
   export run: func();
@@ -27,9 +27,9 @@ world hello-world-rust-wasm-lib-component {
   export greet: func(name: string) -> string;
   export greet-many: func(names: list<string>) -> string;
 
-  use hello-world-rust-wasm-lib-component-interface.{report};
+  use hello-world-rust-wasm-component-lib-interface.{report};
   export get-report: func() -> report;
 
-  use hello-world-rust-wasm-lib-component-interface.{circle};
+  use hello-world-rust-wasm-component-lib-interface.{circle};
   export compute-area: func(circle: circle) -> float64;
 }

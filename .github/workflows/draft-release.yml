@@ -2,8 +2,6 @@ name: Draft release
 on:
   workflow_dispatch:
 jobs:
-  build:
-    uses: ./.github/workflows/build.yml
   draft-release:
     needs: build
     permissions:
@@ -11,14 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: rustup target add wasm32-wasi
+      - run: cargo install wasm-tools
+      - run: ./just build --release
       - id: get-version
         run: |
           version=$(cargo metadata --format-version=1 --no-deps | jq -r '.packages[0].version')
           echo "version=$version" >> "$GITHUB_OUTPUT"
-      - uses: actions/download-artifact@v4
-        with:
-          name: out
-      - run: gh release create "$TAG" --draft out/*
+      - run: |
+          gh release create "$TAG" --draft \
+            target/wasm32-wasi/release/*.wasm
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: v${{ steps.get-version.outputs.version }}

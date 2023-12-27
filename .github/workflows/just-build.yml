@@ -1,0 +1,32 @@
+name: ./just build
+on:
+  push:
+    branches: "main"
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+      - .github/**
+      - "!.github/workflows/just-build.yml"
+  pull_request:
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+      - .github/**
+      - "!.github/workflows/just-build.yml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: rustup target add wasm32-wasi
+      - run: cargo install wasm-tools
+      - run: ./just build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifact
+          path: target/wasm32-wasi/debug/*.wasm
