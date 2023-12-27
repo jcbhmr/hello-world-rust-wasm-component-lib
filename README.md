@@ -1,4 +1,4 @@
-# "Hello world!" Rust WebAssembly library component
+# "Hello world!" Rust WebAssembly component library
 
 🟪 Rust library compiled to WASM and distributed as a [WASM component]
 
