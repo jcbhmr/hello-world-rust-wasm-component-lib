@@ -67,7 +67,7 @@ cargo install hello-world-rust-wasm-component
 ![JavaScript](https://img.shields.io/static/v1?style=for-the-badge&message=JavaScript&color=222222&logo=JavaScript&logoColor=F7DF1E&label=)
 
 You can use any [WASM host runtime for components]. You can find the API surface
-in [`wit/world.wit`](wit/world.wit).
+and any imports you need to provide in [`wit/world.wit`](wit/world.wit).
 
 For language-specific binding documentation, check out
 [`hello-world-rust-wasm-component.js`].
