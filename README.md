@@ -48,19 +48,6 @@ npm install hello-world-rust-wasm-lib-component
 If you prefer to customize the Javascript ↔ WASM component bindings, you can
 use [bytecodealliance/jco] to generate your own bindings.
 
-<!-- For Python users, you can use pip, [Poetry], or another PyPI package manager to
-install [`hello-world-rust-wasm-lib-component`] from PyPI.
-
-```sh
-pip install hello-world-rust-wasm-lib-component
-```
-
-If you're using Rust, you can install [`hello-world-rust-wasm-lib-component`] via Cargo.
-
-```sh
-cargo install hello-world-rust-wasm-lib-component
-``` -->
-
 ## Usage
 
 ![WebAssembly](https://img.shields.io/static/v1?style=for-the-badge&message=WebAssembly&color=654FF0&logo=WebAssembly&logoColor=FFFFFF&label=)
