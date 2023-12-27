@@ -7,6 +7,16 @@ interface hello-world-rust-wasm-component-interface {
     cat-count: u32,
     unicorn-names: list<string>,
   }
+
+  record point {
+    x: float64,
+    y: float64,
+  }
+
+  record circle {
+    center: point,
+    radius: float64,
+  }
 }
 
 world hello-world-rust-wasm-component {
@@ -19,4 +29,7 @@ world hello-world-rust-wasm-component {
 
   use hello-world-rust-wasm-component-interface.{report};
   export get-report: func() -> report;
+
+  use hello-world-rust-wasm-component-interface.{circle};
+  export compute-area: func(circle: circle) -> float64;
 }

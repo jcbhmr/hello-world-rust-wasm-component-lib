@@ -1,12 +1,7 @@
 [package]
 name = "hello-world-rust-wasm-component"
-description = "TODO"
-version = "2.0.0"
+version = "1.0.0"
 edition = "2021"
-documentation = "https://github.com/jcbhmr/hello-world-rust-wasm-component#readme"
-homepage = "https://github.com/jcbhmr/hello-world-rust-wasm-component#readme"
-repository = "https://github.com/jcbhmr/hello-world-rust-wasm-component.git"
-license = "0BSD"
 publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

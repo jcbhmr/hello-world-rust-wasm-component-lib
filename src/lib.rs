@@ -1,3 +1,5 @@
+use std::f64::consts::PI;
+
 // Use a procedural macro to generate bindings for the world we specified in
 // `host.wit`
 wit_bindgen::generate!({
@@ -50,5 +52,9 @@ impl Guest for HelloWorldRustWasmComponent {
             cat_count: 8,
             unicorn_names: vec!["Fluffy".into(), "Marshmallow".into(), "Sparkles".into()],
         };
+    }
+
+    fn compute_area(circle:Circle,) -> f64 {
+        return PI * circle.radius * circle.radius;
     }
 }

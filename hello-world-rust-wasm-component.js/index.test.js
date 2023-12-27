@@ -1,21 +1,33 @@
-import test from "node:test"
-import assert from "node:assert"
-import * as hello_world_rust_wasm_component from "./dist/hello_world_rust_wasm_component.js"
+import test from "node:test";
+import assert from "node:assert";
+import * as hello_world_rust_wasm_component from "./dist/hello_world_rust_wasm_component.js";
 
-console.log(hello_world_rust_wasm_component)
+console.log(hello_world_rust_wasm_component);
 
 test("greet() works", () => {
-  console.log(hello_world_rust_wasm_component.greet("Alan Turing"))
-})
+  console.log(hello_world_rust_wasm_component.greet("Alan Turing"));
+});
 
 test("greetMany() works", () => {
-  console.log(hello_world_rust_wasm_component.greetMany(["Alan Turing", "Ada Lovelace"]))
-})
+  console.log(
+    hello_world_rust_wasm_component.greetMany(["Alan Turing", "Ada Lovelace"]),
+  );
+});
 
 test("run() works", () => {
-  hello_world_rust_wasm_component.run()
-})
+  hello_world_rust_wasm_component.run();
+});
 
 test("getReport() works", () => {
-  console.log(hello_world_rust_wasm_component.getReport())
-})
+  console.log(hello_world_rust_wasm_component.getReport());
+});
+
+test("computeArea() works", () => {
+  console.log(
+    hello_world_rust_wasm_component.computeArea({
+      center: { x: 0, y: 0 },
+      radius: 6,
+    }),
+  );
+  console.log("from JS", Math.PI * 6 * 6);
+});

@@ -18,5 +18,21 @@
   "files": [
     "dist",
     "print.js"
-  ]
+  ],
+  "description": "🔗 JavaScript bindings for jcbhmr/hello-world-rust-wasm-component",
+  "keywords": [
+    "wasm",
+    "webassembly",
+    "rust",
+    "wasi",
+    "wasm-component",
+    "component",
+    "webassembly-component"
+  ],
+  "homepage": "https://github.com/jcbhmr/hello-world-rust-wasm-component/tree/main/hello-world-rust-wasm-component.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcbhmr/hello-world-rust-wasm-component",
+    "directory": "hello-world-rust-wasm-component.js"
+  }
 }

@@ -37,7 +37,7 @@ dependencies = [
 
 [[package]]
 name = "hello-world-rust-wasm-component"
-version = "2.0.0"
+version = "1.0.0"
 dependencies = [
  "wit-bindgen",
 ]
