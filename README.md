@@ -98,5 +98,5 @@ The `wasi_snapshot_preview1.reactor.wasm` is the adapter module to shim the comp
 [bytecodealliance/wasm-tools]: https://github.com/bytecodealliance/wasm-tools
 [wasm component]: https://github.com/WebAssembly/component-model
 [`wasm-tools`]: https://github.com/bytecodealliance/wasm-tools
-[bytecodealliance/wasmtime/releases]: https://github.com/bytecodealliance/wasmtime/releases
+[bytecodealliance/wasmtime releases]: https://github.com/bytecodealliance/wasmtime/releases
 <!-- prettier-ignore-end -->
