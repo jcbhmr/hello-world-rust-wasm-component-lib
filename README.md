@@ -39,7 +39,7 @@ You can inspect the output component WASM using something like this:
 
 ```sh
 wasm-tools component wit target/wasm32-wasi/debug/*.wasm
-# world my-component {
+#=> world my-component {
 #  import print: func(msg: string)
 #  export run: func()
 # }
