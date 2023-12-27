@@ -18,6 +18,7 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
   npm-test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
