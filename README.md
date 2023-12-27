@@ -35,6 +35,16 @@ imports! 😉
 ℹ You'll need [`wasm-tools`] installed which you can get via
 `cargo install wasm-tools`.
 
+You can inspect the output component WASM using something like this:
+
+```sh
+wasm-tools component wit target/wasm32-wasi/debug/*.wasm
+# world my-component {
+#  import print: func(msg: string)
+#  export run: func()
+# }
+```
+
 The `wasi_snapshot_preview1.reactor.wasm` is the adapter module to shim the
 component API over top of the existing WASI API. Keep it updated from
 [bytecodealliance/wasmtime releases]. Since this is a library we want the
