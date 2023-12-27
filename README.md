@@ -29,7 +29,7 @@ imports! 😉
 ![WebAssembly](https://img.shields.io/static/v1?style=for-the-badge&message=WebAssembly&color=654FF0&logo=WebAssembly&logoColor=FFFFFF&label=)
 
 ```sh
-./just build:debug
+./just build
 ```
 
 ℹ You'll need [`wasm-tools`] installed which you can get via
