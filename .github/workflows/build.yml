@@ -1,26 +1,6 @@
 name: ./build.sh
 on:
-  push:
-    branches: "main"
-    paths-ignore:
-      - hello-world-rust-wasm-component.js/**
-      - .gitignore
-      - README.md
-      - LICENSE
-      - .github/**
-      - "!.github/workflows/build.yml"
-  pull_request:
-    paths-ignore:
-      - hello-world-rust-wasm-component.js/**
-      - .gitignore
-      - README.md
-      - LICENSE
-      - .github/**
-      - "!.github/workflows/build.yml"
   workflow_call:
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
