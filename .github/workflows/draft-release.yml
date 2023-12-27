@@ -10,10 +10,15 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - id: get-version
+        run: |
+          version=$(cargo metadata --format-version=1 --no-deps | jq -r '.packages[0].version')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - uses: actions/download-artifact@v4
         with:
           name: out
-      - run: gh release create '?' --draft out/*
+      - run: gh release create "$TAG" --draft out/*
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
+          TAG: v${{ steps.get-version.outputs.version }}
