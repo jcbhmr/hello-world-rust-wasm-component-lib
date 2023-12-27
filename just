@@ -14,4 +14,4 @@ build()(
   mv "$artifact.new" "$artifact"
 )
 
-c="$1"; shift; "$c" "$@"
+c=$1; shift; "$c" "$@"
