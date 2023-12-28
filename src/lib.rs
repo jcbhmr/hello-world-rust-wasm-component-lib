@@ -1,5 +1,7 @@
 use std::f64::consts::PI;
 
+use exports::more_exports;
+
 // Use a procedural macro to generate bindings for the world we specified in
 // `host.wit`
 wit_bindgen::generate!({
@@ -13,6 +15,7 @@ wit_bindgen::generate!({
     exports: {
         world: HelloWorldRustWasmComponent,
         "example:hello-world-rust-wasm-component-lib/hello-world-rust-wasm-component-lib-interface": HelloWorldRustWasmComponent,
+        "more-exports/int-box": IntBox,
     },
 });
 
@@ -56,5 +59,17 @@ impl Guest for HelloWorldRustWasmComponent {
 
     fn compute_area(circle: Circle) -> f64 {
         return PI * circle.radius * circle.radius;
+    }
+}
+
+pub struct IntBox {
+    value: u32,
+}
+impl more_exports::GuestIntBox for IntBox {
+    fn new(value: u32) -> Self {
+        Self { value }
+    }
+    fn get_value(&self) -> u32 {
+        self.value
     }
 }

@@ -32,4 +32,11 @@ world hello-world-rust-wasm-component-lib {
 
   use hello-world-rust-wasm-component-lib-interface.{circle};
   export compute-area: func(circle: circle) -> float64;
+
+  export more-exports: interface {
+    resource int-box {
+      constructor(a: u32);
+      get-value: func() -> u32;
+    }
+  }
 }
