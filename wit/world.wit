@@ -1,42 +1,18 @@
-package example:hello-world-rust-wasm-component-lib@1.0.0;
+package component:hello-world-rust-wasm-component-lib;
 
-interface hello-world-rust-wasm-component-lib-interface {
-  record report {
-    bouncy-castles: u32,
-    fun-percent: float64,
-    cat-count: u32,
-    unicorn-names: list<string>,
-  }
-
-  record point {
-    x: float64,
-    y: float64,
-  }
-
-  record circle {
-    center: point,
-    radius: float64,
-  }
-}
-
-world hello-world-rust-wasm-component-lib {
+/// An example world for the component to target.
+world example {
   import print: func(msg: string);
 
-  export run: func();
+  export say-hi: func();
 
   export greet: func(name: string) -> string;
   export greet-many: func(names: list<string>) -> string;
 
-  use hello-world-rust-wasm-component-lib-interface.{report};
-  export get-report: func() -> report;
-
-  use hello-world-rust-wasm-component-lib-interface.{circle};
-  export compute-area: func(circle: circle) -> float64;
-
-  export more-exports: interface {
+  export my-interface: interface {
     resource int-box {
-      constructor(a: u32);
-      get-value: func() -> u32;
+      constructor(a: s32);
+      get-value: func() -> s32;
     }
   }
 }

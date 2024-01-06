@@ -23,10 +23,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: rustup target add wasm32-unknown-unknown
       - run: rustup target add wasm32-wasi
-      - run: cargo install wasm-tools
-      - run: ./just build
+      - run: rustup target add wasm32-wasi-preview1-threads
+      - uses: cargo-bins/cargo-binstall@main
+      - run: cargo binstall cargo-component -y
+      - run: cargo component build
       - uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: target/wasm32-wasi/debug/*.wasm
+          path: target/wasm*/debug/*.wasm
