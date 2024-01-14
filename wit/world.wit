@@ -1,18 +1,57 @@
-package component:hello-world-rust-wasm-component-lib;
+package jcbhmr:hello-world-rust-wasm-component-lib;
 
-/// An example world for the component to target.
-world example {
-  import print: func(msg: string);
+interface io {
+  println: func(message: string);
+  eprintln: func(message: string);
+}
 
-  export say-hi: func();
+interface hello-world {
+  greet: func(name: string) -> string;
+  say-hello: func(name: string);
+}
 
-  export greet: func(name: string) -> string;
-  export greet-many: func(names: list<string>) -> string;
-
-  export my-interface: interface {
-    resource int-box {
-      constructor(a: s32);
-      get-value: func() -> s32;
-    }
+interface for-each-cb-host {
+  resource cb-string-u32-list-string {
+    run: func(a: string, b: u32, c: list<string>);
   }
+  resource cb-u32-u32-list-u32 {
+    run: func(a: u32, b: u32, c: list<u32>);
+  }
+}
+interface for-each-cb {
+  use for-each-cb-host.{cb-string-u32-list-string as host-cb-string-u32-list-string};
+  resource cb-string-u32-list-string {
+    wrap: static func(cb: host-cb-string-u32-list-string) -> cb-string-u32-list-string;
+    run: func(a: string, b: u32, c: list<string>);
+  }
+  use for-each-cb-host.{cb-u32-u32-list-u32 as host-cb-u32-u32-list-u32};
+  resource cb-u32-u32-list-u32 {
+    wrap: static func(cb: host-cb-u32-u32-list-u32) -> cb-u32-u32-list-u32;
+    run: func(a: u32, b: u32, c: list<u32>);
+  }
+}
+interface for-each {
+  use for-each-cb.{cb-string-u32-list-string, cb-u32-u32-list-u32};
+  for-each-string: func(%list: list<string>, cb: cb-string-u32-list-string);
+  for-each-u32: func(%list: list<u32>, cb: cb-u32-u32-list-u32);
+}
+
+interface my-box {
+  resource my-box {
+    constructor(value: u32);
+    value: func() -> u32;
+  }
+  set-global: func(value: my-box);
+  global-value: func() -> u32;
+}
+
+world example {
+  import io;
+  export hello-world;
+
+  import for-each-cb-host;
+  export for-each-cb;
+  export for-each;
+
+  export my-box;
 }
