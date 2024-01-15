@@ -17,5 +17,5 @@ bindings-test:
 	(cd target/js/test && npm install)
 
 test:
-	# node --experimental-default-type=module --test
+	node --experimental-default-type=module --test
 	cargo test
