@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {
   cb,
   helloWorldRustWasmComponentLib,
-} from "../target/js/test/hello_world_rust_wasm_component_lib.js";
+} from "../target/js/hello_world_rust_wasm_component_lib.js";
 import * as cbh from "./cbh.js";
 import { inspect } from "node:util";
 

@@ -8,28 +8,28 @@ setup:
 	npm install -g @bytecodealliance/jco
 
 bindings-js:
-	rm -rf target/js/test
+	rm -rf target/js
 	jco transpile \
 		target/wasm32-unknown-unknown/debug/hello_world_rust_wasm_component_lib.wasm \
-		-o target/js/test \
-		--map "jcbhmr:hello-world-rust-wasm-component-lib/*=../../../tests/*.js" \
+		-o target/js \
+		--map "jcbhmr:hello-world-rust-wasm-component-lib/*=../../tests/*.js" \
 		$(JCOFLAGS)
-	git -C target/js/test init
-	echo '{"type":"module","exports":"./hello_world_rust_wasm_component_lib.js","dependencies":{"@bytecodealliance/preview2-shim":"latest"}}' > target/js/test/package.json
-	(cd target/js/test; npm install)
-	git -C target/js/test add -Af
-	git -C target/js/test commit -m "Initial commit"
-	(cd target/js/test; patch -p1 < ../../../bindings-js.patch)
+	git -C target/js init
+	echo '{"type":"module","exports":"./hello_world_rust_wasm_component_lib.js","dependencies":{"@bytecodealliance/preview2-shim":"latest"}}' > target/js/package.json
+	(cd target/js; npm install)
+	git -C target/js add -Af
+	git -C target/js commit -m "Initial commit"
+	(cd target/js; patch -p1 < ../../bindings-js.patch)
 
 diff-bindings-js:
-	find target/js/test -type f -name '*.orig' -delete
-	find target/js/test -type f -name '*.rej' -delete
-	git -C target/js/test diff > bindings-js.patch
+	find target/js -type f -name '*.orig' -delete
+	find target/js -type f -name '*.rej' -delete
+	git -C target/js diff > bindings-js.patch
 
 test-bindings-js:
 	node --experimental-default-type=module --test
 
 test-bindings-rs:
-	cargo test
+	cargo test -- --show-output
 
 test: test-bindings-js test-bindings-rs
