@@ -1,3 +1,6 @@
+build-release:
+	cargo component build --release --target wasm32-unknown-unknown
+
 build:
 	cargo component build --target wasm32-unknown-unknown
 
@@ -15,8 +18,7 @@ bindings-js:
 		--map "jcbhmr:hello-world-rust-wasm-component-lib/*=../../tests/*.js" \
 		$(JCOFLAGS)
 	git -C target/js init
-	echo '{"type":"module","exports":"./hello_world_rust_wasm_component_lib.js","dependencies":{"@bytecodealliance/preview2-shim":"latest"}}' > target/js/package.json
-	(cd target/js; npm install)
+	echo '{"type":"module","exports":"./hello_world_rust_wasm_component_lib.js"}' > target/js/package.json
 	git -C target/js add -Af
 	git -C target/js commit -m "Initial commit"
 	(cd target/js; patch -p1 < ../../bindings-js.patch)

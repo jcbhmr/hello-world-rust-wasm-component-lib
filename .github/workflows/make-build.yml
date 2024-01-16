@@ -1,4 +1,4 @@
-name: ./just build
+name: make build
 on:
   push:
     branches: "main"
@@ -19,17 +19,16 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  just-build:
+  make-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: rustup target add wasm32-unknown-unknown
-      - run: rustup target add wasm32-wasi
-      - run: rustup target add wasm32-wasi-preview1-threads
       - uses: cargo-bins/cargo-binstall@main
       - run: cargo binstall cargo-component -y
-      - run: cargo component build
+      - run: make build
       - uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: target/wasm*/debug/*.wasm
+          path: |
+            target/wasm32-unknown-unknown/debug/hello_world_rust_wasm_component_lib.wasm

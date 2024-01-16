@@ -6,15 +6,31 @@ bindgen!();
 use jcbhmr::hello_world_rust_wasm_component_lib::*;
 
 struct MyState {
+    p_string_id: u32,
     p_string: HashMap<u32, Box<dyn Fn(&str)>>,
+    r_string_id: u32,
     r_string: HashMap<u32, Box<dyn Fn() -> String>>,
 }
 impl MyState {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {
+            p_string_id: 1,
             p_string: HashMap::new(),
+            r_string_id: 1,
             r_string: HashMap::new(),
         }
+    }
+    pub fn create_p_string(&mut self, f: Box<dyn Fn(&str)>) -> Resource<cbh::PString> {
+        let rep = self.p_string_id;
+        self.p_string_id += 1;
+        self.p_string.insert(rep, f);
+        Resource::new_own(rep)
+    }
+    pub fn create_r_string(&mut self, f: Box<dyn Fn() -> String>) -> Resource<cbh::RString> {
+        let rep = self.r_string_id;
+        self.r_string_id += 1;
+        self.r_string.insert(rep, f);
+        Resource::new_own(rep)
     }
 }
 impl cbh::HostPString for MyState {
@@ -67,20 +83,18 @@ fn it_works() {
     let hello_world_rust_wasm_component_lib =
         bindings.jcbhmr_hello_world_rust_wasm_component_lib_hello_world_rust_wasm_component_lib();
 
-    let my_cb: Box<dyn Fn(&str)> = Box::new(|a: &str| println!("my_cb recieved: a={}", a));
-    store.data_mut().p_string.insert(100, my_cb);
-    let my_cb = cb_p_string
-        .call_constructor(&mut store, Resource::new_own(100))
-        .unwrap();
+    let my_cb = store
+        .data_mut()
+        .create_p_string(Box::new(|a| println!("Hello {a}!")));
+    let my_cb = cb_p_string.call_constructor(&mut store, my_cb).unwrap();
     hello_world_rust_wasm_component_lib
         .call_set_cb(&mut store, my_cb)
         .unwrap();
 
-    let my_cb2: Box<dyn Fn() -> String> = Box::new(|| "Hello from my_cb2!".to_string());
-    store.data_mut().r_string.insert(200, my_cb2);
-    let my_cb2 = cb_r_string
-        .call_constructor(&mut store, Resource::new_own(200))
-        .unwrap();
+    let my_cb2 = store
+        .data_mut()
+        .create_r_string(Box::new(|| "Alan Turing".to_string()));
+    let my_cb2 = cb_r_string.call_constructor(&mut store, my_cb2).unwrap();
     hello_world_rust_wasm_component_lib
         .call_run_cb_with_result_of(&mut store, my_cb2)
         .unwrap();

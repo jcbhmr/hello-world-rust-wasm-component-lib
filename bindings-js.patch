@@ -1,28 +1,35 @@
 diff --git a/hello_world_rust_wasm_component_lib.js b/hello_world_rust_wasm_component_lib.js
-index 824d8a1..c4a7706 100644
+index 178d781..d2ab99a 100644
 --- a/hello_world_rust_wasm_component_lib.js
 +++ b/hello_world_rust_wasm_component_lib.js
-@@ -124,7 +124,10 @@ function trampoline5(rep) {
+@@ -101,11 +101,7 @@ function trampoline2(rep) {
+   return handle;
+ }
+ function trampoline3(handle) {
+-  const handleEntry = handleTable2.get(handle);
+-  if (!handleEntry) {
+-    throw new Error(`Resource error: Invalid handle ${handle}`);
+-  }
+-  return handleEntry.rep;
++  return handle;
+ }
+ function trampoline4(handle) {
+   const handleEntry = handleTable2.get(handle);
+@@ -124,7 +120,7 @@ function trampoline5(rep) {
    return handle;
  }
  
 -const PString$1 = class PString{
-+const PString$1 = class {
-+  static {
-+    Object.defineProperty(this, 'name', { value: 'PString', configurable: true });
-+  }
++const PString$1 = class PString$1{
    constructor(arg0) {
      if (!(arg0 instanceof PString)) {
        throw new Error('Resource error: Not a valid "HPString" resource.');
-@@ -161,7 +164,10 @@ PString$1.prototype.call = function call(arg1) {
+@@ -161,7 +157,7 @@ PString$1.prototype.call = function call(arg1) {
    }
  };
  
 -const RString$1 = class RString{
-+const RString$1 = class {
-+  static {
-+    Object.defineProperty(this, 'name', { value: 'RString', configurable: true });
-+  }
++const RString$1 = class RString$1{
    constructor(arg0) {
      if (!(arg0 instanceof RString)) {
        throw new Error('Resource error: Not a valid "HRString" resource.');
